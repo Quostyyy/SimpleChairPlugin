@@ -15,18 +15,15 @@ import pl.quosty.chair.service.ChairService;
 @Getter
 public class ChairPlugin extends JavaPlugin {
 
-    @Getter private static ChairPlugin instance;
-
     private final ChairService chairService = new ChairService();
 
     @Override
     public void onEnable() {
-        instance = this;
 
         CraftServer craftServer = (CraftServer) getServer();
-        craftServer.getCommandMap().register("chair", new ChairCommand());
+        craftServer.getCommandMap().register("chair", new ChairCommand(chairService));
 
-        Bukkit.getPluginManager().registerEvents(new EntityDismountListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDismountListener(chairService), this);
     }
 
 }

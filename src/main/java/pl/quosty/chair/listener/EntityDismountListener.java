@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.spigotmc.event.entity.EntityDismountEvent;
-import pl.quosty.chair.ChairPlugin;
 import pl.quosty.chair.service.ChairService;
 
 /**
@@ -14,7 +13,11 @@ import pl.quosty.chair.service.ChairService;
 
 public class EntityDismountListener implements Listener {
 
-    private final ChairService chairService = ChairPlugin.getInstance().getChairService();
+    private final ChairService chairService;
+
+    public EntityDismountListener(ChairService chairService) {
+        this.chairService = chairService;
+    }
 
     @EventHandler
     public void onEntityDismount(EntityDismountEvent event) {
