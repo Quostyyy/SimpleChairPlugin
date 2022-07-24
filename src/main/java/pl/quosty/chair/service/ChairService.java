@@ -24,7 +24,6 @@ public class ChairService {
         sittingPlayers.add(player);
         setChair(player.getLocation()).setPassenger(player);
     }
-
     public void removePlayerFromChair(Player player, ArmorStand chair){
         if(!isPlayerSitting(player)){
             return;

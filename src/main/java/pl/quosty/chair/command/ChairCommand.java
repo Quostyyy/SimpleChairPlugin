@@ -3,7 +3,6 @@ package pl.quosty.chair.command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.quosty.chair.ChairPlugin;
 import pl.quosty.chair.service.ChairService;
 
 import java.util.Arrays;
@@ -13,13 +12,13 @@ import java.util.Arrays;
  **/
 
 public class ChairCommand extends Command {
+    private final ChairService chairService;
 
-    public ChairCommand() {
+    public ChairCommand(ChairService chairService) {
         super("chair", "Basic command to put down a chair", "Correct usage: /chair", Arrays.asList("chairs", "sit"));
         this.setPermission("chair.command");
+        this.chairService = chairService;
     }
-
-    private final ChairService chairService = ChairPlugin.getInstance().getChairService();
 
     @Override
     public boolean execute(CommandSender commandSender, String s, String[] strings) {
