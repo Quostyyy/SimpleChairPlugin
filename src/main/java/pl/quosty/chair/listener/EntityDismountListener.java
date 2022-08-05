@@ -1,5 +1,6 @@
 package pl.quosty.chair.listener;
 
+import lombok.RequiredArgsConstructor;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,29 +10,19 @@ import pl.quosty.chair.service.ChairService;
 
 /**
  * @author: Patryk 'Quosty' Kowalczyk
- **/
-
-public class EntityDismountListener implements Listener {
+ */
+@RequiredArgsConstructor
+public final class EntityDismountListener implements Listener {
 
     private final ChairService chairService;
 
-    public EntityDismountListener(ChairService chairService) {
-        this.chairService = chairService;
-    }
-
     @EventHandler
-    public void onEntityDismount(EntityDismountEvent event) {
-
+    private void onEntityDismount(EntityDismountEvent event) {
+        if (!(event.getEntity() instanceof Player)) return;
         Player player = (Player) event.getEntity();
 
-        if(!(event.getEntity() instanceof Player)){
-            return;
-        }
-        if(!(event.getDismounted() instanceof ArmorStand)){
-            return;
-        }
-
+        if (!(event.getDismounted() instanceof ArmorStand)) return;
         chairService.removePlayerFromChair(player, (ArmorStand) event.getDismounted());
-
     }
+
 }

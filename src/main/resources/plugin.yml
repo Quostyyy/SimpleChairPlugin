@@ -1,5 +1,7 @@
+main: pl.quosty.chair.ChairPlugin
 name: SimpleChairPlugin
+
 version: 1.0
 description: SimpleChairPlugin is a simple chair plugin for Minecraft.
+
 author: Quosty
-main: pl.quosty.chair.ChairPlugin

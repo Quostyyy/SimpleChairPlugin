@@ -9,9 +9,9 @@ import java.util.Arrays;
 
 /**
  * @author: Patryk 'Quosty' Kowalczyk
- **/
+ */
+public final class ChairCommand extends Command {
 
-public class ChairCommand extends Command {
     private final ChairService chairService;
 
     public ChairCommand(ChairService chairService) {
@@ -22,20 +22,18 @@ public class ChairCommand extends Command {
 
     @Override
     public boolean execute(CommandSender commandSender, String s, String[] strings) {
-        if(!(commandSender instanceof Player)){
+        if (!(commandSender instanceof Player)) {
             commandSender.sendMessage("Only players can use this command!");
             return false;
         }
 
         Player player = (Player) commandSender;
-
-        if(!player.hasPermission(this.getPermission())){
+        if (!player.hasPermission(this.getPermission())) {
             player.sendMessage("You are not allowed to use this command");
             return false;
         }
 
         chairService.addPlayerToChair(player);
-
         return false;
     }
 }
