@@ -7,10 +7,6 @@ import pl.quosty.chair.service.ChairService;
 
 import java.util.Arrays;
 
-/**
- * @author: Patryk 'Quosty' Kowalczyk
- **/
-
 public class ChairCommand extends Command {
     private final ChairService chairService;
 
@@ -34,7 +30,7 @@ public class ChairCommand extends Command {
             return false;
         }
 
-        chairService.addPlayerToChair(player);
+        this.chairService.addPlayerToChair(player);
 
         return false;
     }
