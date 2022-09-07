@@ -8,10 +8,6 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
-/**
- * @author: Patryk 'Quosty' Kowalczyk
- **/
-
 public class ChairService {
 
     private final ArrayList<Player> sittingPlayers = new ArrayList<>();
@@ -20,25 +16,20 @@ public class ChairService {
         if(isPlayerSitting(player)){
             return;
         }
-
         sittingPlayers.add(player);
         setChair(player.getLocation()).setPassenger(player);
     }
     public void removePlayerFromChair(Player player, ArmorStand chair){
-        if(!isPlayerSitting(player)){
+        if (!isPlayerSitting(player) || !(player.getVehicle() instanceof ArmorStand)) {
             return;
         }
-        if(!(player.getVehicle() instanceof ArmorStand)){
-            return;
-        }
-
         sittingPlayers.remove(player);
         chair.remove();
     }
 
     private ArmorStand setChair(Location location){
-        final World world = location.getWorld();
-        final ArmorStand chair = (ArmorStand) world.spawnEntity(location.subtract(0,1.6,0), EntityType.ARMOR_STAND);
+        World world = location.getWorld();
+        ArmorStand chair = (ArmorStand) world.spawnEntity(location.subtract(0,1.6,0), EntityType.ARMOR_STAND);
         chair.setGravity(false);
         chair.setVisible(false);
         return chair;
@@ -47,5 +38,4 @@ public class ChairService {
     protected boolean isPlayerSitting(Player player){
         return sittingPlayers.contains(player);
     }
-
 }
